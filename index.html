@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar El Mina -Resto </title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--header-->
+    <div class="nav-bar">
+        <h1 class="size-h1">Dar El Mina</h1>
+        <div>
+        <a href="#menu">Menu</a>
+        <a href="#infos">Infos</a>
+        <a href="#reserver">Reserver</a>
+        </div>
+    </div>
+    <!--landing page-->
+    <div class="landing-page">
+        <span>La mer<br> d'Oran dans <br> l'assiette</span>
+        <h3>Poisson du jour, couscous du vendredi et pains faits maison. Une cuisine simple, à deux pas du port.</h3>
+       <a class="btn" href="#reserver">Réserver une table</a>
+       <a class="btn ghost" href="#menu">Voir le menu</a>
+    </div>
+
+    <!--le menu-->
+    <div class="menu" id="menu">
+        <div>
+            <h1>Le menu</h1>
+            <p>Les plats changent selon la pêche du jour.</p>
+        </div>
+        <div id="tabs"></div>
+        <div id="list"></div>
+
+    </div>
+ <!--contact-->
+    <div class="infos">
+        <div>
+            <h1>Venir nous voir</h1>
+            <h5>Front de mer, Oran. Parking gratuit à 50 m.</h5>
+            <p>Tél. / WhatsApp : 0555 00 00 00</p>
+            <p>Instagram : @darelmina.oran</p>
+        </div>
+        <div class="horaires">
+            <h2>Horaires</h2>
+            <table>
+                <tr>
+                    <td>Dimanche – Jeudi</td>
+                    <td>12h – 23h</td>
+                </tr>
+                <tr>
+                    <td>Vendredi</td>
+                    <td>13h30 – 23h30</td>
+                </tr>
+                <tr>
+                    <td>Samedi</td>
+                    <td>12h – 00h</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <!--reserver-->
+        <div class="Reserver-table">
+            <h1>Réserver une table</h1>
+            <p>Votre demande arrive directement sur notre WhatsApp.</p>
+            <div>
+                <form action="reservation">
+                    <label>nom:</label>
+                    <input type="text">
+                    <label>date:</label>
+                    <input type="date">
+                    <label>heure:</label>
+                    <select>
+                        <option>12h00</option>
+                        <option>12h30</option>
+                        <option>13h00</option>
+                        <option>13h30</option>
+                        <option>19h30</option>
+                        <option>20h00</option>
+                        <option>20h30</option>
+                        <option>21h00</option>
+                    </select>
+                    <label>nombre de personne:</label>
+                    <input type="number" min="1">
+                    <button class="reserve">Envoyer sur WhatsApp</button>
+
+
+                </form>
+
+            </div>
+
+
+
+        </div>
+
+
+        <footer>
+            <p>© 2026 Dar El Mina, Oran. Site de démonstration.</p>
+        </footer>
+
+
+        <script>
+            const MENU ={
+                "Entrées":[
+                ["chorba frik,Soupe d'agneau,blé vert, coriandre", "450 DA"],
+                ["Salade oranaise", "Poivrons grillés, tomates, olives", "350 DA"],
+                ["Bourek aux fruits de mer", "Trois pièces, sauce citron", "600 DA"]
+            ],
+                 "Plats": [
+                ["Poisson du jour grillé", "Selon la pêche, légumes de saison", "1 800 DA"],
+                ["Couscous royal", "Agneau, poulet, merguez", "1 500 DA"],
+                ["Paella oranaise", "Crevettes, calamars, moules", "1 900 DA"],
+                ["Tajine de poulet aux olives", "Servi avec pain maison", "1 200 DA"]
+            ],
+                "Desserts": [
+                ["Makroud", "Semoule, dattes, miel", "300 DA"],
+                ["Crème brûlée à la fleur d'oranger", "", "400 DA"],
+                ["Thé à la menthe", "Théière pour deux", "250 DA"]
+            ]
+            };
+
+                const tabs = document.getElementById('tabs');
+                const list = document.getElementById('list');
+        function show(k) {
+        [...tabs.children].forEach(b => b.setAttribute('aria-selected', b.textContent === k));
+        list.innerHTML = MENU[k].map(([n, d, p]) =>
+            `<div class="dish"><div><h3>${n}</h3>${d ? `<p>${d}</p>` : ''}</div><span class="price">${p}</span></div>`
+        ).join('');
+        }
+
+        Object.keys(MENU).forEach(k => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = k;
+        b.onclick = () => show(k);
+        tabs.appendChild(b);
+        });
+
+        show('Entrées');
+
+        </script>
+
+
+
+
+
+
+</body>
+</html>
